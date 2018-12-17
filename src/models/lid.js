@@ -1,4 +1,4 @@
-module.exports = (sequalize, { BOOLEAN, STRING, INTEGER }) =>
+module.exports = (sequalize, { STRING, INTEGER }) =>
   sequalize.define(
     'lids', {
       id: {
@@ -16,7 +16,7 @@ module.exports = (sequalize, { BOOLEAN, STRING, INTEGER }) =>
       },
       description: STRING,
       email: STRING,
-      isVerified: BOOLEAN,
+      isVerified: STRING,
       name: STRING,
       phone: STRING,
       title: STRING

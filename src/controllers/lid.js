@@ -1,8 +1,14 @@
-const { Lid } = require('../config')
+const { Lid, User } = require('../config')
 
 module.exports = {
   getAllLids: (req, res) =>
-    Lid.findAll()
+    Lid.findAll({
+      includes: [
+        {
+          model: User
+        }
+      ]
+    })
       .then(data =>
         res.json(data)
       ),

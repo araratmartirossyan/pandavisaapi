@@ -1,8 +1,14 @@
-const { MoneyLid } = require('../config')
+const { MoneyLid, User } = require('../config')
 
 module.exports = {
   getAllMoneyLids: (req, res) =>
-    MoneyLid.findAll()
+    MoneyLid.findAll({
+      includes: [
+        {
+          model: User
+        }
+      ]
+    })
       .then(data =>
         res.json(data)
       ),

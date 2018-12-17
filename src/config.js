@@ -24,13 +24,15 @@ sequelize.sync({ force: false })
     console.log('users database was created')
   )
 
-const Users = UserModel(sequelize, Sequelize)
+const User = UserModel(sequelize, Sequelize)
 const Service = ServiceModel(sequelize, Sequelize)
 const Lid = LidModel(sequelize, Sequelize)
 const MoneyLid = MoneyLidModel(sequelize, Sequelize)
+Lid.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' })
+MoneyLid.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' })
 
 module.exports = {
-  Users,
+  User,
   Service,
   Lid,
   MoneyLid

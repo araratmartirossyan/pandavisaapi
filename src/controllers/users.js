@@ -1,16 +1,16 @@
-const { Users } = require('../config')
+const { User } = require('../config')
 const { getOpenId } = require('../utils/wechatAuthorization')
 const { calculateDays } = require('../utils/days')
 
 module.exports = {
   getAllUsers: (req, res) =>
-    Users.findAll()
+    User.findAll()
       .then(data =>
         res.json(data)
       ),
   getUser: async(req, res) => {
     const { id } = req.params
-    const foundUser = await Users.findOne({ openid: id })
+    const foundUser = await User.findOne({ openid: id })
     if (foundUser) {
       return res.status(200).json({ foundUser })
     }
@@ -30,10 +30,10 @@ module.exports = {
       ...body,
       visa_info: true
     }
-    await Users.findOne({ openid: id })
+    await User.findOne({ openid: id })
       .then(user => {
         if (user) {
-          Users.update(
+          User.update(
             { ...updatedInfo },
             { where: { id } }
           ).then(data =>
@@ -54,9 +54,9 @@ module.exports = {
           return res.status(403).json({ error: data.errmsg })
         }
         const { unionid, openid } = data
-        const foundUser = await Users.findOne({ openid })
+        const foundUser = await User.findOne({ openid })
         if (!foundUser) {
-          new Users({
+          new User({
             js_code,
             unionid,
             openid,
