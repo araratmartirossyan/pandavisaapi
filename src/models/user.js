@@ -34,6 +34,10 @@ module.exports = (sequalize, { BOOLEAN, STRING, INTEGER }) =>
       city: STRING,
       province: STRING,
       country: STRING,
+    },
+    {
+      charset: 'utf8',
+      collate: 'utf8_unicode_ci'
     }
   )
 

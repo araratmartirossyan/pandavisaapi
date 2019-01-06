@@ -4,9 +4,9 @@ const ServiceModel = require('./models/service')
 const LidModel = require('./models/lid')
 const MoneyLidModel = require('./models/moneyLid')
 const sequelize = new Sequelize(
-  "panda_test",
-  "root",
-  "maxt9leo123", // put to ENV
+  "weappdb",
+  "weapp",
+  "4Ki1mjbvH", // put to ENV
   {
     host: "127.0.0.1",
     dialect: "mysql",
@@ -18,6 +18,22 @@ const sequelize = new Sequelize(
     }
   }
 )
+// const sequelize = new Sequelize(
+//   "panda_test",
+//   "root",
+//   "maxt9leo123", // put to ENV
+//   {
+//     host: "127.0.0.1",
+//     dialect: "mysql",
+//     pool: {
+//       max: 10,
+//       min: 0,
+//       acquire: 30000,
+//       idle: 10000
+//     }
+//   }
+// )
+
 
 sequelize.sync({ force: false })
   .then(() =>

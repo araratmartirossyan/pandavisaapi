@@ -18,5 +18,9 @@ module.exports = (sequalize, { BOOLEAN, STRING, INTEGER }) =>
       sum: STRING,
       title: STRING,
       total: STRING
+    },
+    {
+      charset: 'utf8',
+      collate: 'utf8_unicode_ci'
     }
   )

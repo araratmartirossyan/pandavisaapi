@@ -20,5 +20,9 @@ module.exports = (sequalize, { STRING, INTEGER }) =>
       name: STRING,
       phone: STRING,
       title: STRING
+    },
+    {
+      charset: 'utf8',
+      collate: 'utf8_unicode_ci'
     }
   )
