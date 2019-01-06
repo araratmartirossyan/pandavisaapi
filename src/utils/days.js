@@ -33,7 +33,7 @@ const formatTime = date => {
 const firstNumber = n => n = Number(n.toString()[0] + 0)
 const formatNumber = n => n.toString()[1] ? n : '0' + n
 
-const calculateDays = ({ expire_date, start_date, coridor }) => {
+const calculateDays = ({ expire_date, start_date, corridor }) => {
   const end = Date.parse(expire_date)
   const start = Date.parse(start_date)
   const today = Date.now()
@@ -49,7 +49,7 @@ const calculateDays = ({ expire_date, start_date, coridor }) => {
     percent,
     days_before,
     visaTime,
-    coridorBefore: diffDays(start_date, Number(coridor))
+    coridorBefore: diffDays(start_date, Number(corridor))
   }
 }
 

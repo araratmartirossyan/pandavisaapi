@@ -21,31 +21,36 @@ module.exports = {
       body: {
         start_date,
         expire_date,
-        coridor
+        corridor
       },
       body
     } = req
+    console.log(
+      body
+    )
     const updatedInfo = {
-      ...calculateDays({ start_date, expire_date, coridor }),
+      ...calculateDays({ start_date, expire_date, corridor }),
       ...body,
       visa_info: true
     }
-    await User.findOne({ openid: id })
-      .then(user => {
-        if (user) {
-          User.update(
-            { ...updatedInfo },
-            { where: { id } }
-          ).then(data =>
-            res.status(200).json({
-              user,
-              updatedInfo
-            })  
-          )
-        } else {
-          return res.status(403).json({ error: 'User not found' })
-        }
+    const user = await User.findOne({ openid: id })
+    if (user) {
+      await User.update(
+        { ...updatedInfo },
+        { where: { id } }
+      )
+      return res.status(200).json({
+        user,
+        updatedInfo
       })
+    } else {
+      res.status(500).json({
+        error: true,
+        message: 'User not found'
+      })
+    }
+    return res.status(200).json({ updatedInfo })
+
   },
   signInWithWeChat: async({ body: { js_code, userInfo } }, res) => {
     await getOpenId(js_code)
