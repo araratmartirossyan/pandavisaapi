@@ -35,7 +35,7 @@ const sequelize = new Sequelize(
 // )
 
 
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
   .then(() =>
     console.log('users database was created')
   )
