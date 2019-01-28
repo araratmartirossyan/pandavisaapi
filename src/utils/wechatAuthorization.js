@@ -1,8 +1,8 @@
 const axios = require('axios')
 const qs = require('qs')
 
-const appID = 'wxa07eb02e9983ef10'
-const appSecret = '1c0bda62298c1d52fe9d5323f54c28de'
+const appID = 'wx765adbde70b2a2eb'
+const appSecret = '2f74ad4b70eaf805aa81b80206ee178e'
 
 const getOpenId = js_code => {
 	const data = qs.stringify({ 

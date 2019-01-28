@@ -1,55 +1,65 @@
 const { MoneyLid, User } = require('../config')
 
 module.exports = {
-  getAllMoneyLids: (req, res) =>
-    MoneyLid.findAll({
-      includes: [
-        {
-          model: User
-        }
-      ]
-    })
-      .then(data =>
-        res.json(data)
-      ),
-  getMoneyLid: ({ params: { id } }, res) =>
-    MoneyLid.find({
-      where: {
-        id
-      }
-    }).then(data =>
-      res.status(200)
-        .send({
-          data
-        })
-    ),
-  createMoneyLid: ({ body }, res) =>
-    new MoneyLid({ ...body })
-      .save()
-      .then(() =>
-        res.status(200).send({
-          status: 200
-        })
-    ),
-    updateMoneyLid: ({ params: { id }, body }, res) =>
-      MoneyLid.update(
-        { ...body },
-        { where: { id } }
-      ).then(() => 
-        res.status(200)
-          .send({
-            status: 'Updated'
-          })
-      ),
-    deleteMoneyLid: ({ params: { id } }, res) =>
-      MoneyLid.destroy({
+  getAllMoneyLids: async (req, res) => {
+    try {
+      const data = await MoneyLid.findAll({
+        include: [
+          {
+            model: User
+          }
+        ]
+      })
+      return res.status(200).send(data)
+    } catch (err) {
+      throw err
+    }
+  },
+  getMoneyLid: async ({ params: { id } }, res) => {
+    try {
+      const data = await MoneyLid.find({
         where: {
           id
         }
-      }).then(() =>
-        res.status(200)
-          .send({
-            status: 'Deleted'
-          })
+      })
+      return res.status(200).send(data)
+    } catch (err) {
+      throw err
+    }
+  },
+  createMoneyLid: async ({ body }, res) => {
+    try {
+      const data = await new MoneyLid({ ...body }).save()
+      return res.status(200).send(data)
+    } catch (err) {
+      throw err
+    }
+  },
+  updateMoneyLid: async ({ params: { id }, body }, res) => {
+    try {
+      await MoneyLid.update(
+        { ...body },
+        { where: { id } }
       )
+      return res.status(200).send({
+        status: 'Updated'
+      })
+    } catch (err) {
+      throw err
+    }
+  },
+  deleteMoneyLid: async ({ params: { id } }, res) => {
+    try {
+      await MoneyLid.destroy({
+        where: {
+          id
+        }
+      })
+      return res.status(200).send({
+        status: 'Deleted'
+      })
+    } catch (err) {
+      throw err
+    }
+  }
 }

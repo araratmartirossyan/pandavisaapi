@@ -4,7 +4,8 @@ module.exports = (sequalize, { BOOLEAN, STRING, INTEGER }) =>
       id: {
         type: INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        foreignKey: true
       },
       age: STRING,
       countryCode: STRING,

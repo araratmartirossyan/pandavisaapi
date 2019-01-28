@@ -2,7 +2,8 @@ module.exports = {
     routes: [
       'users',
       'service',
-      'lid'
+      'lid',
+      'stats'
     ]
   }
   
